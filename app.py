@@ -56,6 +56,16 @@ def open_modal(ack, client, body):
                     }
                 },
                 {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": "Note: responses are not being sanitized for safety currently, so please avoid special characters where possible."
+                    }
+                },
+                {
+                    "type": "divider"
+                },
+                {
                     "type": "input",
                     "element": {
                         "type": "plain_text_input",
