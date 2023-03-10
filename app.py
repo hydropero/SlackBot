@@ -3,20 +3,20 @@ import os
 from slack_bolt import App
 import db
 
-# Initializes your app with your bot token and signing secret
 
+# Retrieves Slack credentials from non-git synced file
 with open('dbinfo') as dbinfo:
   lines = dbinfo.readlines()
   token_value = lines[0].split('=')[1].strip()
   signing_secret_value = lines[1].split('=')[1].strip()
 
 
+# Initializes your app with your bot token and signing secret
 app = App(
     token=token_value,
     signing_secret=signing_secret_value
 )
 
-#engine = db.engine
 
 
 @app.command("/standup")
