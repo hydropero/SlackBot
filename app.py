@@ -31,7 +31,7 @@ def open_modal(ack, client, body):
             "callback_id": "standup",
             "title": {
                 "type": "plain_text",
-                "text": "My App",
+                "text": "Daily Standup Automator",
                 "emoji": False
             },
             "submit": {
