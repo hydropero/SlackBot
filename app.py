@@ -3,7 +3,7 @@ import os
 from slack_bolt import App
 import db
 
-#minor
+#minor1
 # Retrieves Slack credentials from non-git synced file
 with open('dbinfo') as dbinfo:
   lines = dbinfo.readlines()
