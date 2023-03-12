@@ -1,8 +1,14 @@
 import os
 # Use the package we installed
 from slack_bolt import App
+from sqlalchemy.orm import sessionmaker
 import db
 import models
+import datetime
+import sqlalchemy
+import time
+from sqlalchemy import create_engine
+
 #minor12
 # Retrieves Slack credentials from non-git synced file
 with open('dbinfo') as dbinfo:
@@ -17,8 +23,8 @@ app = App(
     signing_secret=signing_secret_value
 )
 
-
-
+Standups = models.Standups
+session = db.session
 
 @app.command("/standup")
 def open_modal(ack, client, body):
@@ -68,6 +74,7 @@ def open_modal(ack, client, body):
                 },
                 {
                     "type": "input",
+                    "block_id": "do_yesterday",
                     "element": {
                         "type": "plain_text_input",
                         "multiline": True,
@@ -84,6 +91,7 @@ def open_modal(ack, client, body):
                 },
                 {
                     "type": "input",
+                    "block_id": "tech_do_yesterday",
                     "element": {
                         "type": "plain_text_input",
                         "multiline": True,
@@ -97,6 +105,7 @@ def open_modal(ack, client, body):
                 },
                 {
                     "type": "input",
+                    "block_id": "tech_type",
                     "element": {
                         "type": "multi_static_select",
                         "placeholder": {
@@ -172,6 +181,7 @@ def open_modal(ack, client, body):
                 },
                 {
                     "type": "input",
+                    "block_id": "challenge",
                     "element": {
                         "type": "plain_text_input",
                         "multiline": True,
@@ -185,6 +195,7 @@ def open_modal(ack, client, body):
                 },
                 {
                     "type": "input",
+                    "block_id": "do_today",
                     "element": {
                         "type": "plain_text_input",
                         "multiline": True,
@@ -198,6 +209,7 @@ def open_modal(ack, client, body):
                 },
                 {
                     "type": "input",
+                    "block_id": "blockers",
                     "element": {
                         "type": "plain_text_input",
                         "multiline": True,
@@ -244,8 +256,29 @@ def handle_submission(ack, body, client, view, logger):
 
     # Do whatever you want with the input data - here we're saving it to a DB
     # then sending the user a verification of their submission
+    current_date = datetime.datetime.now
+    current_time = datetime.datetime.time
+    do_yesterday = view["state"]["value"]["do_yesterday"]["plain_text_input-action"]
+    tech_do_yesterday = view["state"]["value"]["tech_do_yesterday"]["plain_text_input-action"]
+    tech_type = view["state"]["value"]["tech_type"]["plain_text_input-action"]
+    challenge = view["state"]["value"]["challenge"]["plain_text_input-action"]
+    do_today = view["state"]["value"]["do_today"]["plain_text_input-action"]
+    blockers = view["state"]["value"]["blockers"]["plain_text_input-action"]
 
-    print(hopes_and_dreams)
+    standup_entry = Standups(
+        username = "Myles",
+        date = current_date,
+        time = current_time,
+        do_yesterday = do_yesterday,
+        tech_do_yesterday = tech_do_yesterday,
+        tech_type = tech_type,
+        challenge = challenge,
+        do_today = do_today,
+        blockers = blockers
+    )
+    session.add(standup_entry)
+    session.commit()
+
     # Message to send user
     msg = ""
     try:
