@@ -238,7 +238,8 @@ def handle_submission(ack, body, client, view, logger):
     # Do whatever you want with the input data - here we're saving it to a DB
     # then sending the user a verification of their submission
     current_date = datetime.datetime.now()
-    current_time = datetime.datetime.time()
+    current_time = datetime.datetime.now().time()
+    current_time = str(current_time).split('.')[0]
     do_yesterday = view["state"]["values"]["do_yesterday"]["plain_text_input-action"]
     tech_do_yesterday = view["state"]["values"]["tech_do_yesterday"]["plain_text_input-action"]
     tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]
