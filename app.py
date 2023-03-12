@@ -24,7 +24,6 @@ app = App(
 )
 
 Standups = models.Standups
-session = db.session
 
 @app.command("/standup")
 def open_modal(ack, client, body):
@@ -258,6 +257,9 @@ def handle_submission(ack, body, client, view, logger):
         do_today = do_today,
         blockers = blockers
     )
+    with db.session.begin() as session:
+        session.add(standup_entry)
+        
 
     view = {
         "type": "modal",
@@ -279,8 +281,6 @@ def handle_submission(ack, body, client, view, logger):
 
     ack()
     ack(response_action="update", view=view)
-    session.add(standup_entry)
-    session.commit()
 
     # Message to send user
     msg = ""
