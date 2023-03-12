@@ -251,8 +251,7 @@ def handle_submission(ack, body, client, view, logger):
     }
     # Acknowledge the
     #  view_submission request and close the modal
-    ack()
-    ack(response_action="update", view=view)
+
 
     # Do whatever you want with the input data - here we're saving it to a DB
     # then sending the user a verification of their submission
@@ -276,6 +275,9 @@ def handle_submission(ack, body, client, view, logger):
         do_today = do_today,
         blockers = blockers
     )
+
+    ack()
+    ack(response_action="update", view=view)
     session.add(standup_entry)
     session.commit()
 
