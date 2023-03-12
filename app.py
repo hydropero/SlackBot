@@ -242,7 +242,7 @@ def handle_submission(ack, body, client, view, logger):
     current_time = str(current_time).split('.')[0]
     do_yesterday = view["state"]["values"]["do_yesterday"]["plain_text_input-action"]["value"]
     tech_do_yesterday = view["state"]["values"]["tech_do_yesterday"]["plain_text_input-action"]["value"]
-    tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]["selected_options"][0]["text"]
+    tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]["selected_options"][0]["text"]["text"]
     challenge = view["state"]["values"]["challenge"]["plain_text_input-action"]["value"]
     do_today = view["state"]["values"]["do_today"]["plain_text_input-action"]["value"]
     blockers = view["state"]["values"]["blockers"]["plain_text_input-action"]["value"]
