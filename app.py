@@ -66,7 +66,7 @@ def open_modal(ack, client, body):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": "Note: responses are not being sanitized for safety currently, so please avoid special characters where possible."
+                        "text": "Note: Unsure whether SQL statements are being properly parameterized. Please don't attmempt any SQL injection technique until a backup solution has been implemented."
                     }
                 },
                 {
