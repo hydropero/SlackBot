@@ -3,7 +3,9 @@ pipeline {
   stages {
     stage('TestStage') {
       steps {
-        sh 'hostname'
+        sh '''cd /home/ubuntu/Programming/Slack/SlackBot
+git pull
+start_slack'''
       }
     }
 
