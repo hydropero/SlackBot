@@ -2,7 +2,7 @@ import os
 # Use the package we installed
 from slack_bolt import App
 import db
-
+import models
 #minor12
 # Retrieves Slack credentials from non-git synced file
 with open('dbinfo') as dbinfo:
@@ -16,6 +16,7 @@ app = App(
     token=token_value,
     signing_secret=signing_secret_value
 )
+
 
 
 
