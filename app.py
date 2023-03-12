@@ -237,7 +237,7 @@ def handle_submission(ack, body, client, view, logger):
     # Do whatever you want with the input data - here we're saving it to a DB
     # then sending the user a verification of their submission
     tech_type_array = []
-    username = user["username"]
+    username = body["user"]["username"]
     current_date = str(datetime.datetime.now().date().today())
     current_time = datetime.datetime.now().time()
     current_time = str(current_time).split('.')[0]
