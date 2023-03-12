@@ -232,23 +232,6 @@ def handle_submission(ack, body, client, view, logger):
     user = body["user"]["id"]
     # Validate the inputs
     hopes_and_dreams = view["state"]["values"]
-    view = {
-        "type": "modal",
-        "title": {
-            "type": "plain_text",
-            "text": "Completed!",
-            "emoji": False
-        },
-        "blocks": [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "Thank you for your submission. You may now click 'Close' to exit this form."
-                }
-            }
-        ]
-    }
     # Acknowledge the
     #  view_submission request and close the modal
 
@@ -276,6 +259,24 @@ def handle_submission(ack, body, client, view, logger):
         blockers = blockers
     )
 
+    view = {
+        "type": "modal",
+        "title": {
+            "type": "plain_text",
+            "text": "Completed!",
+            "emoji": False
+        },
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Thank you for your submission. You may now click 'Close' to exit this form."
+                }
+            }
+        ]
+    }
+    
     ack()
     ack(response_action="update", view=view)
     session.add(standup_entry)
