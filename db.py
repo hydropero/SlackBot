@@ -16,3 +16,4 @@ engine = db.create_engine(f'postgresql+psycopg2://{username}:{password}@127.0.0.
 session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
+
