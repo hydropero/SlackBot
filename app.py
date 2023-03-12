@@ -7,7 +7,7 @@ import models
 import datetime
 import sqlalchemy
 import time
-import pprint
+from pprint import pprint
 from sqlalchemy import create_engine
 
 #minor12
@@ -235,7 +235,11 @@ def handle_submission(ack, body, client, view, logger):
     # Acknowledge the
     #  view_submission request and close the modal
 
-
+    pprint(user)
+    print("")
+    pprint(body["user"])
+    print("")
+    pprint(body)
     # Do whatever you want with the input data - here we're saving it to a DB
     # then sending the user a verification of their submission
     current_date = str(datetime.datetime.now().date().today())
