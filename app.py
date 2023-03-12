@@ -66,7 +66,7 @@ def open_modal(ack, client, body):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": "Note: I am unsure whether SQL statements are being properly parameterized. Please do not test any SQL injection techniques until a backup solution has been implemented."
+                        "text": "NOTE: I am unsure whether SQL statements are being properly parameterized. Please do not test any SQL injection techniques until a backup solution has been implemented."
                     }
                 },
                 {
