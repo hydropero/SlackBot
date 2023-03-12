@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('TestStage') {
       steps {
-        sh '''cd /home/ubuntu/Programming/Slack/SlackBot
-git pull
+        sh '''git -C /home/ubuntu/Programming/Slack/SlackBot pull
 start_slack'''
       }
     }
