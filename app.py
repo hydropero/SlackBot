@@ -240,12 +240,12 @@ def handle_submission(ack, body, client, view, logger):
     current_date = str(datetime.datetime.now().date().today())
     current_time = datetime.datetime.now().time()
     current_time = str(current_time).split('.')[0]
-    do_yesterday = view["state"]["values"]["do_yesterday"]["plain_text_input-action"]
-    tech_do_yesterday = view["state"]["values"]["tech_do_yesterday"]["plain_text_input-action"]
-    tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]
-    challenge = view["state"]["values"]["challenge"]["plain_text_input-action"]
-    do_today = view["state"]["values"]["do_today"]["plain_text_input-action"]
-    blockers = view["state"]["values"]["blockers"]["plain_text_input-action"]
+    do_yesterday = view["state"]["values"]["do_yesterday"]["plain_text_input-action"]["value"]
+    tech_do_yesterday = view["state"]["values"]["tech_do_yesterday"]["plain_text_input-action"]["value"]
+    tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]["selected_options"][0]["text"]
+    challenge = view["state"]["values"]["challenge"]["plain_text_input-action"]["value"]
+    do_today = view["state"]["values"]["do_today"]["plain_text_input-action"]["value"]
+    blockers = view["state"]["values"]["blockers"]["plain_text_input-action"]["value"]
 
     standup_entry = Standups(
         username = "Myles",
