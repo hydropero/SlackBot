@@ -234,31 +234,29 @@ def handle_submission(ack, body, client, view, logger):
     hopes_and_dreams = view["state"]["values"]
     # Acknowledge the
     #  view_submission request and close the modal
-
-    pprint(user)
-    print("")
-    pprint(body["user"])
-    print("")
-    pprint(body)
     # Do whatever you want with the input data - here we're saving it to a DB
     # then sending the user a verification of their submission
+    tech_type_array = []
+    username = user["username"]
     current_date = str(datetime.datetime.now().date().today())
     current_time = datetime.datetime.now().time()
     current_time = str(current_time).split('.')[0]
     do_yesterday = view["state"]["values"]["do_yesterday"]["plain_text_input-action"]["value"]
     tech_do_yesterday = view["state"]["values"]["tech_do_yesterday"]["plain_text_input-action"]["value"]
-    tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]["selected_options"][0]["text"]["text"]
+    tech_type = view["state"]["values"]["tech_type"]["multi_static_select-action"]["selected_options"]
+    for type in tech_type:
+        tech_type_array.append(type["text"]["text"])
     challenge = view["state"]["values"]["challenge"]["plain_text_input-action"]["value"]
     do_today = view["state"]["values"]["do_today"]["plain_text_input-action"]["value"]
     blockers = view["state"]["values"]["blockers"]["plain_text_input-action"]["value"]
 
     standup_entry = Standups(
-        username = "Myles",
+        username = username,
         date = current_date,
         time = current_time,
         do_yesterday = do_yesterday,
         tech_do_yesterday = tech_do_yesterday,
-        tech_type = tech_type,
+        tech_type = ",".join(tech_type_array),
         challenge = challenge,
         do_today = do_today,
         blockers = blockers
