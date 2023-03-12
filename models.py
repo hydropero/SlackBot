@@ -4,6 +4,7 @@ from db import Base, engine
 
 
 class Standups(Base):
+    __tablename__ = "standups"
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=False)
     date = Column(Date, unique=False)
