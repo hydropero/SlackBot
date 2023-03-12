@@ -241,11 +241,11 @@ def handle_submission(ack, body, client, view, logger):
     current_date = datetime.datetime.now
     current_time = datetime.datetime.time
     do_yesterday = view["state"]["value"]["do_yesterday"]["plain_text_input-action"]
-    tech_do_yesterday = view["state"]["value"]["tech_do_yesterday"]["plain_text_input-action"]
-    tech_type = view["state"]["value"]["tech_type"]["plain_text_input-action"]
-    challenge = view["state"]["value"]["challenge"]["plain_text_input-action"]
-    do_today = view["state"]["value"]["do_today"]["plain_text_input-action"]
-    blockers = view["state"]["value"]["blockers"]["plain_text_input-action"]
+    tech_do_yesterday = view["state"]["values"]["tech_do_yesterday"]["plain_text_input-action"]
+    tech_type = view["state"]["values"]["tech_type"]["plain_text_input-action"]
+    challenge = view["state"]["values"]["challenge"]["plain_text_input-action"]
+    do_today = view["state"]["values"]["do_today"]["plain_text_input-action"]
+    blockers = view["state"]["values"]["blockers"]["plain_text_input-action"]
 
     standup_entry = Standups(
         username = "Myles",
@@ -276,7 +276,7 @@ def handle_submission(ack, body, client, view, logger):
             }
         ]
     }
-    
+
     ack()
     ack(response_action="update", view=view)
     session.add(standup_entry)
