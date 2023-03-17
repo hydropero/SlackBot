@@ -16,6 +16,7 @@ class Standups(Base):
     do_today = Column(String, unique=False)
     blockers = Column(String, unique=False)
 
+# rpgjhgpe]rhm
 
 # class Test_Table(Base):
 #     __tablename__ = "testtable"
