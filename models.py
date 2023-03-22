@@ -17,7 +17,7 @@ class Standups(Base):
     blockers = Column(String, unique=False)
 
 # rpgjhgpe]rhm
-
+# r
 # class Test_Table(Base):
 #     __tablename__ = "testtable"
 #     id = Column(Integer, primary_key=True, index=True)
